@@ -8,6 +8,8 @@ class UserManager(models.Manager):
         if 'first_name' in postData:
             if len(postData['first_name']) < 2:
                 errors['first_name'] = "First name must be at least two characters long"
+            elif len(postData['first_name']) > 30:
+                errors['first_name'] = "Your name is waaaaay too long."
         if 'last_name' in postData:
             if len(postData['last_name']) < 2:
                 errors['last_name'] = "Last name must be at least two characters long"
