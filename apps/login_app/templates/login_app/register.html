@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/login_app/css/style.css' %}">
+</head>
+<body>
+    <div class = "wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1 style = 'margin-left: 200px' class="navbar-brand">Test App</h1>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class = 'nav-link' href="/" style = 'margin-left: 50px'>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style = "margin-left: 820px" class = 'nav-link' href="/login">Sign in</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class = "login_section"> 
+            <h1 style = 'padding: 20px 0px'>Registration</h1>
+            <form action = '/process_register' method = 'post'>
+                {% csrf_token %}
+                <label for="first_name">First Name</label>
+                <input class="form-control" type="text" placeholder="First Name" id = "first_name" name = "first_name">
+                <label for="last_name">Last Name</label>
+                <input class="form-control" type="text" placeholder="last Name" id = "last_name" name = "last_name">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" placeholder="example@yahoo.com" id = "email" name = "email">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" placeholder="Password" id = "regPassword" name = "regPassword">
+                <label for="confPassword">Confirm Password</label>
+                <input class="form-control" type="password" placeholder="Confirm Password" id = "confPassword" name = "confPassword">
+                <button class="btn btn-success" type="submit" style = "margin: 20px auto">Register</button>
+            </form>
+            <a href = '/login' style = 'display: block'>Already have an account? Login</a>
+        </div>
+        <div class = 'login_section'>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>

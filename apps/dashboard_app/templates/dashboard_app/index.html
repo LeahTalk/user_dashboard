@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/dashboard_app/css/style.css' %}">
+</head>
+<body>
+    <div class = "wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1 style = 'margin-left: 200px' class="navbar-brand">Test App</h1>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class = 'nav-link' href="/dashboard" style = 'margin-left: 50px'>Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class = 'nav-link' href="/users/edit" style = 'margin-left: 50px'>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style = "margin-left: 670px" class = 'nav-link' href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class = 'main_section'>
+            <div class = 'header_section'>
+                <h3 style = 'display: inline-block'>All Users</h3>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">User Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id}}</td>
+                            <td>
+                                <a href = '/users/show/{{ user.id }}'>{{ user.first_name}} {{ user.last_name }}</a>
+                            </td>
+                            <td>{{ user.email}} </td>
+                            <td>{{ user.created_at }}</td>
+                            <td>{{ user.user_level }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>

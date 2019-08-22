@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>New User</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/user_app/css/style.css' %}">
+</head>
+<body>
+    <div class = "wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1 style = 'margin-left: 200px' class="navbar-brand">Test App</h1>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class = 'nav-link' href="/dashboard" style = 'margin-left: 50px'>Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class = 'nav-link' href="/users/edit" style = 'margin-left: 50px'>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style = "margin-left: 670px" class = 'nav-link' href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class = 'main_section'>
+            <div class = 'header_section'>
+                <h3 style = 'display: inline-block'>Add a New User</h3>
+                <a class = 'btn btn-primary' style = 'color: white; margin-left: 720px; display:' href = '/dashboard/admin'>Return to Dashboard</a>
+            </div>
+            <div class = "form_section"> 
+                <form action = '/users/create_user' method = 'post'>
+                    {% csrf_token %}
+                    <label for="first_name">First Name</label>
+                    <input class="form-control" type="text" placeholder="First Name" id = "first_name" name = "first_name">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" type="text" placeholder="last Name" id = "last_name" name = "last_name">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="text" placeholder="example@yahoo.com" id = "email" name = "email">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" placeholder="Password" id = "regPassword" name = "regPassword">
+                    <label for="confPassword">Confirm Password</label>
+                    <input class="form-control" type="password" placeholder="Confirm Password" id = "confPassword" name = "confPassword">
+                    <button class="btn btn-success" type="Create" style = "margin: 20px auto">Register</button>
+                </form>
+            </div>
+            <div class = 'form_section' style = 'margin-left: 200px'>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
